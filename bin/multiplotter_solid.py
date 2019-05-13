@@ -81,7 +81,7 @@ def drawMap(n, column, runname=''):
         m.drawBase(m.caption, fontsize=8)
 
     # Add station markers 1-6 if defined
-    for i in xrange(1,7):
+    for i in range(1,7):
         station = config.get('station' + str(i))
         if station:
             (station_lon, station_lat) = station
@@ -136,7 +136,7 @@ def addSettoMap(m, n, i, column):
 
 def saveMap(m):
     # Add legend
-    proxy = [matplotlib.pyplot.Rectangle((0,0),1,1,fc=color) for color in add_color.values()]
+    proxy = [matplotlib.pyplot.Rectangle((0,0),1,1,fc=color) for color in list(add_color.values())]
     matplotlib.pyplot.legend(proxy, m.runnames, loc='upper right', fontsize='small').set_zorder(102)
     
     matplotlib.pyplot.show()
@@ -220,7 +220,7 @@ add_file = {}
 add_dir = {}
 add_color = {1: color1}
 
-for i in xrange(2,7):
+for i in range(2,7):
     if config.get('infile' + str(i)):
         add_file[i] = config.get('infile' + str(i))
     if config.get('indir' + str(i)):
@@ -241,7 +241,7 @@ if infile:
         map_obj = drawMap(n, column, runname)
         map_obj = addSettoMap(map_obj, n, 1, column)        
 
-        for i in xrange(2,7):
+        for i in range(2,7):
             if i in add_file:
                 n_i = name.Name(add_file[i])
                 map_obj = addSettoMap(map_obj, n_i, i, column)
@@ -255,7 +255,7 @@ if infile:
             map_obj = drawMap(n, column, runname)
             map_obj = addSettoMap(map_obj, n, 1, column)        
 
-            for i in xrange(2,7):
+            for i in range(2,7):
                 if add_file[i]:
                     n_i = name.Name(add_file[i])
                     map_obj = addSettoMap(map_obj, n_i, i, column)
@@ -340,7 +340,7 @@ elif indir:
         allfiles[1] = sorted(s.fs.getAll())
 
         # date-sorted lists of files for input directories 2-6
-        for i in xrange(2,7):
+        for i in range(2,7):
             indir_i = config.get('indir' + str(i))
             if indir_i:
                 s_i = namesum.Sum(indir_i)
@@ -360,7 +360,7 @@ elif indir:
                 map_obj = addSettoMap(map_obj, n, 1, column)
 
                 # iterate over input directories 2-6
-                for i in allfiles.keys()[1:]:
+                for i in list(allfiles.keys())[1:]:
                         
                     # Check for date in list of files
                     match_date = [ m for m in allfiles[i] if mapdate in m ]
@@ -383,4 +383,4 @@ else:
     exit
 
 
-print '*** Done!'
+print('*** Done!')

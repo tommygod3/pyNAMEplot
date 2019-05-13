@@ -16,7 +16,7 @@ def main():
 
     shape_file = args.shp
     out_file = basename(splitext(shape_file)[0]) + '_EPSG{}'.format(args.projection)
-    print 'Writing output {}...'.format(out_file)
+    print('Writing output {}...'.format(out_file))
 
     shape = fiona.open(shape_file)
     original = Proj(shape.crs) # Input CRS

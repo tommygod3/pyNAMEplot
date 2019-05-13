@@ -421,7 +421,7 @@ class Map(object):
         if self.outdir:
             filename = os.path.join(self.outdir, filename)
 
-        print 'Creating plot file: {}'.format(filename)
+        print('Creating plot file: {}'.format(filename))
         self.fig.savefig(filename, dpi=300)
 
     def free(self):

@@ -39,7 +39,7 @@ group2.add_argument("-y", "--year", help="Select NAME files from Year")
 
 args = parser.parse_args()
 
-print '+++ Starting zonecsv... +++'
+print('+++ Starting zonecsv... +++')
 
 # namefile = 'PML_NAME_output/low5dayPML_20150501.txt'  # input NAME filename 
 # pklfile = 'PML_master.pkl'  # input master grid file
@@ -51,7 +51,7 @@ print '+++ Starting zonecsv... +++'
 zones = pd.read_pickle(args.grid)
 zones = zones.to_dense()
 zones = zones.fillna(0)
-print "Loaded master grid file %s..." % args.grid
+print("Loaded master grid file %s..." % args.grid)
 
 # 
 if args.namefile:
@@ -68,7 +68,7 @@ if args.indir:
     else:
         files = f.getAll()
 
-print "Writing output file %s..." % args.outfile
+print("Writing output file %s..." % args.outfile)
 
 with open(args.outfile, 'w') as csvfile:
 
@@ -92,12 +92,12 @@ with open(args.outfile, 'w') as csvfile:
         namefile = name.Name(n)
         timestamps = namefile.timestamps
         namedata = namefile.data
-        print "Loaded NAME file %s..." % n
+        print("Loaded NAME file %s..." % n)
 
         foo = namedata.join(zones, how='inner')
 
         for t in timestamps:
-            print "Processing time %s..." % t
+            print("Processing time %s..." % t)
 
             totals = {s: (foo[s] * foo[t]).sum() for s in shortnames}
 
@@ -109,4 +109,4 @@ with open(args.outfile, 'w') as csvfile:
 
             writer.writerow(row)
 
-print "Done!"
+print("Done!")

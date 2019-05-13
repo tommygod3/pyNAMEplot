@@ -1,0 +1,14 @@
+name: pyNAMEplot
+channels:
+- conda-forge
+dependencies:
+- python
+- matplotlib
+- shapely
+- numpy
+- arrow
+- geopandas
+- configobj
+- basemap
+- pillow
+- pandas

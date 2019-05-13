@@ -118,12 +118,12 @@ def drawMap(n, column):
 
         # Draw lines at zone boundaries
         if shapelines:
-            print 'Plotting zone lines...'
+            print('Plotting zone lines...')
             m.zoneLines()
         
         # Draw solid colours for zones
         if shapecolors:
-            print 'Plotting zone colours...'
+            print('Plotting zone colours...')
             m.zoneColour(colors)
 
     # If output directory does not exist, create it
@@ -324,4 +324,4 @@ elif indir:
 else:
     raise ValueError('No input file or directory defined')
 
-print '*** Done!'
+print('*** Done!')

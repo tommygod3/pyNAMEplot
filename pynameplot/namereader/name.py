@@ -24,7 +24,7 @@ import re
 from .header import loadheader
 from .geom import coverfactor, gridsquare
 from .shape import Shape
-from util import shortname
+from .util import shortname
 
 
 class Name:
@@ -157,7 +157,7 @@ class Name:
         df = df.dropna(axis=1, how='all')
     
         # Get column header timestamp names from first row
-        c = map(list, df[0:1].values)
+        c = list(map(list, df[0:1].values))
         collist = c[0]
     
         # Set leader column names
@@ -180,7 +180,7 @@ class Name:
             start_time = arrow.get(self.endrelease, 'DD/MM/YYYY HH:mm')
             delta_time = start_time - col0_time
             
-            newstamps = map(lambda t: (arrow.get(t, 'DD/MM/YYYY HH:mm')+delta_time).format('DD/MM/YYYY HH:mm UTC'), self.timestamps)
+            newstamps = [(arrow.get(t, 'DD/MM/YYYY HH:mm')+delta_time).format('DD/MM/YYYY HH:mm UTC') for t in self.timestamps]
             self.timestamps = newstamps
             collist = [''] + coordcols + newstamps
 
@@ -246,7 +246,7 @@ class Name:
         Get minimum and maximum non-zero concentration values for given column
         """
         
-        print 'Checking column:', column
+        print('Checking column:', column)
         
         # Flatten list of concentration values
         cl = self.data[column].values.tolist()

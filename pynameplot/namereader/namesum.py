@@ -96,7 +96,7 @@ class Sum(Name):
         """
 
         if len(files) > 0 :
-            print 'Loading: ', files[0]
+            print('Loading: ', files[0])
             n = Name(files[0])
             n.add_all()
 
@@ -122,7 +122,7 @@ class Sum(Name):
             m = m.rename(columns={'subtotal': 'total'})
 
             for f in files[1::]:
-                print 'Loading: ', f
+                print('Loading: ', f)
                 n2 = Name(f)
                 n2.add_all()
                 m2 = n2.trimmed()

@@ -3,9 +3,9 @@ import tempfile
 import shutil
 import calendar
 
-from namereader import drawmap
-from namereader import name
-from namereader import namesum
+from .namereader import drawmap
+from .namereader import name
+from .namereader import namesum
 
 
 class TemporaryDirectory(object):
@@ -56,7 +56,7 @@ def main():
         else:
             # draw maps for all timestamps in file
             for column in n.timestamps:
-                print n.timestamps
+                print(n.timestamps)
                 n.column = column
                 drawmap.drawMap(n, column, **plotoptions)
 

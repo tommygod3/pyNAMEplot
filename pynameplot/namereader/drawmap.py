@@ -1,6 +1,6 @@
 import os
-import namemap
-import util
+from . import namemap
+from . import util
 
 
 def drawMap(n, column, projection=False, lon_bounds=(), lat_bounds=(), lon_axis=[], lat_axis=[],
@@ -145,10 +145,10 @@ def draw_shape_map(n, column, shapelist, shapelines=True, shapecolors=True):
 
     # Draw lines at zone boundaries
     if shapelines:
-        print 'Plotting zone lines...'
+        print('Plotting zone lines...')
         m.zoneLines()
 
     # Draw solid colours for zones
     if shapecolors:
-        print 'Plotting zone colours...'
+        print('Plotting zone colours...')
         m.zoneColour(colors)
