@@ -23,8 +23,8 @@ def loadheader(filename):
         for line in range(1, 19):
             h = f.readline()
             
-            if ":" in h:
-                (key, val) = h.split(":", 1)
+            if ':' in h:
+                (key, val) = h.split(':', 1)
                 key = key.strip()
                 val = val.strip()
             

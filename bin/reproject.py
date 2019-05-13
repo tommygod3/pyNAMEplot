@@ -10,7 +10,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description='Re-projects shapefile')
     parser.add_argument('shp', help='ShapeFile to re-project')
-    parser.add_argument('-p', '--projection', type=int, default=4326, help="New EPSG projection (default: %(default)s)")
+    parser.add_argument('-p', '--projection', type=int, default=4326, help='New EPSG projection (default: %(default)s)')
 
     args = parser.parse_args()
 
@@ -34,5 +34,5 @@ def main():
             output.write(feat)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

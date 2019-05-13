@@ -35,7 +35,7 @@ class Fileset:
             self.years = defaultdict(list)
 
             if not os.path.isdir(directory):
-                  raise ValueError("Input argument is not a directory")
+                  raise ValueError('Input argument is not a directory')
 
             self.files = glob.glob(directory + '/*_group*.txt')
 

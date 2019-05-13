@@ -26,16 +26,16 @@ from pynameplot.namereader import fileset, name, util
 
 # -------------------------------------
 
-parser = argparse.ArgumentParser(prog='zonecsv', description="Sum NAME concentration files over ESRI zones.")
+parser = argparse.ArgumentParser(prog='zonecsv', description='Sum NAME concentration files over ESRI zones.')
 group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument("-d", "--indir", help="Input NAME file directory")
-group.add_argument("-n", "--namefile", help="Input NAME file to sum over")
-parser.add_argument("-g", "--grid", help="Input master grid file", required=True)
-parser.add_argument("-o", "--outfile", help="Output CSV results file", required=True)
+group.add_argument('-d', '--indir', help='Input NAME file directory')
+group.add_argument('-n', '--namefile', help='Input NAME file to sum over')
+parser.add_argument('-g', '--grid', help='Input master grid file', required=True)
+parser.add_argument('-o', '--outfile', help='Output CSV results file', required=True)
 group2 = parser.add_mutually_exclusive_group()
-group2.add_argument("-w", "--week", help="Select NAME files from ISO week number")
-group2.add_argument("-m", "--month", help="Select NAME files from Month number")
-group2.add_argument("-y", "--year", help="Select NAME files from Year")
+group2.add_argument('-w', '--week', help='Select NAME files from ISO week number')
+group2.add_argument('-m', '--month', help='Select NAME files from Month number')
+group2.add_argument('-y', '--year', help='Select NAME files from Year')
 
 args = parser.parse_args()
 
@@ -43,7 +43,7 @@ print('+++ Starting zonecsv... +++')
 
 # namefile = 'PML_NAME_output/low5dayPML_20150501.txt'  # input NAME filename 
 # pklfile = 'PML_master.pkl'  # input master grid file
-# outfile = "testdata2.csv"  # output csv filename
+# outfile = 'testdata2.csv'  # output csv filename
 
 # -------------------------------------
 
@@ -51,7 +51,7 @@ print('+++ Starting zonecsv... +++')
 zones = pd.read_pickle(args.grid)
 zones = zones.to_dense()
 zones = zones.fillna(0)
-print("Loaded master grid file %s..." % args.grid)
+print('Loaded master grid file %s...' % args.grid)
 
 # 
 if args.namefile:
@@ -68,7 +68,7 @@ if args.indir:
     else:
         files = f.getAll()
 
-print("Writing output file %s..." % args.outfile)
+print('Writing output file %s...' % args.outfile)
 
 with open(args.outfile, 'w') as csvfile:
 
@@ -92,12 +92,12 @@ with open(args.outfile, 'w') as csvfile:
         namefile = name.Name(n)
         timestamps = namefile.timestamps
         namedata = namefile.data
-        print("Loaded NAME file %s..." % n)
+        print('Loaded NAME file %s...' % n)
 
         foo = namedata.join(zones, how='inner')
 
         for t in timestamps:
-            print("Processing time %s..." % t)
+            print('Processing time %s...' % t)
 
             totals = {s: (foo[s] * foo[t]).sum() for s in shortnames}
 
@@ -105,8 +105,8 @@ with open(args.outfile, 'w') as csvfile:
         
             percents = {'pc_'+s: (totals[s] / sum_conc) * 100.0 for s in shortnames}
 
-            row = util.merge_dicts({"Timestamp": t}, totals, percents)
+            row = util.merge_dicts({'Timestamp': t}, totals, percents)
 
             writer.writerow(row)
 
-print("Done!")
+print('Done!')

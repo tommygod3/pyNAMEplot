@@ -28,7 +28,7 @@ import os
 
 # suppress matplotlib/basemap warnings
 import warnings
-warnings.filterwarnings("ignore")
+warnings.filterwarnings('ignore')
 
 
 
@@ -190,7 +190,7 @@ class Map(object):
         self.projection = projection
 
     # --------------------------------------------------------
-    def drawBase(self, caption, fontsize=10, boarder_col="black", sea_col="white", land_col="#D1D1D1", grid_col="black"):
+    def drawBase(self, caption, fontsize=10, boarder_col='black', sea_col='white', land_col='#D1D1D1', grid_col='black'):
         """
         Set up map projection
         Draw basic map layout including coastlines and boundaries
@@ -426,8 +426,8 @@ class Map(object):
 
     def free(self):
         """Free up memory"""
-        self.column = ""
-        self.runname = ""
+        self.column = ''
+        self.runname = ''
         self.fig.clf()
         plt.close('all')
         del self.m, self.name

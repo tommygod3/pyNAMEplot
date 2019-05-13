@@ -21,8 +21,8 @@ class Shape(object):
     Class for Shapely geometry derived from ESRI shapefile
     """
 
-    shapefile = ""
-    shortname = ""
+    shapefile = ''
+    shortname = ''
 
     def __init__(self, shapefile):
         """

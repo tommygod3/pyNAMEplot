@@ -4,9 +4,9 @@ from . import util
 
 
 def drawMap(n, column, projection=False, lon_bounds=(), lat_bounds=(), lon_axis=[], lat_axis=[],
-            scale=(), autoscale=True, caption=None, solid=False, color1="", colormap="", station=(),
-            outdir="", outfile="", logos=True, boarder_col="black", sea_col="white", land_col="#D1D1D1",
-            grid_col="black"):
+            scale=(), autoscale=True, caption=None, solid=False, color1='', colormap='', station=(),
+            outdir='', outfile='', logos=True, boarder_col='black', sea_col='white', land_col='#D1D1D1',
+            grid_col='black'):
     """
     Function will draw a footprint map, most values will not need to be set as defaults are okay.
     :param n: Name obj
@@ -101,10 +101,10 @@ def drawMap(n, column, projection=False, lon_bounds=(), lat_bounds=(), lon_axis=
 
     # Add logos
     if logos:
-        m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), "logos/MO_cropped.png"), 250)
-        m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), "logos/CEDA.png"), 700)
-        #m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), "logos/NCAS_med.png"), 905)
-        m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), "logos/UoL.png"), 1150)
+        m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logos/MO_cropped.png'), 250)
+        m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logos/CEDA.png'), 700)
+        #m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logos/NCAS_med.png'), 905)
+        m.addlogo(os.path.join(os.path.dirname(os.path.dirname(__file__)), 'logos/UoL.png'), 1150)
 
     # If output directory does not exist, create it
     if len(outdir) > 0:
@@ -130,8 +130,8 @@ def draw_shape_map(n, column, shapelist, shapelines=True, shapecolors=True):
     colors = []
     with open(shapelist, 'r') as f:
         for line in f:
-            if "," in line:
-                (filename, colorname) = line.split(",", 1)
+            if ',' in line:
+                (filename, colorname) = line.split(',', 1)
                 filename = filename.strip()
                 colorname = colorname.strip()
 

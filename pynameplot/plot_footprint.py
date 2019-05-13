@@ -9,7 +9,7 @@ from .namereader import namesum
 
 
 class TemporaryDirectory(object):
-    """Context manager for tempfile.mkdtemp() so it's usable with "with" statement."""
+    """Context manager for tempfile.mkdtemp() so it's usable with 'with' statement."""
     def __enter__(self):
         self.name = tempfile.mkdtemp()
         return self.name
@@ -20,8 +20,8 @@ class TemporaryDirectory(object):
 
 def main():
     parser = argparse.ArgumentParser(prog='plot_footprint', description='Plot NAME concentration files on world map')
-    parser.add_argument('-i', '--infiles', nargs='+', required=True, help="NAME output files to plot")
-    parser.add_argument('-o', '--outputdir', nargs='?', required=True, help="Plot output directory")
+    parser.add_argument('-i', '--infiles', nargs='+', required=True, help='NAME output files to plot')
+    parser.add_argument('-o', '--outputdir', nargs='?', required=True, help='Plot output directory')
     group = parser.add_mutually_exclusive_group(required=False)
     group.add_argument('-t', '--time', nargs='?', help='Specific datetime to plot (YYYY-MM-DD HH:MM UTC)')
     group.add_argument('-d', '--day', nargs='?', help='Plot summary of this day')
@@ -31,10 +31,10 @@ def main():
     group.add_argument('-a', '--all', action='store_true', default=False, help='Plot summary of all files')
 
     parser.add_argument('-s', '--station', nargs = 2, type=float, required=False,
-                        help="Longitude and latitude of the release station")
+                        help='Longitude and latitude of the release station')
     parser.add_argument('-p', '--projection', nargs='?', choices=['cyl', 'npstere', 'spstere'], default='cyl',
-                        help="Map projection")
-    parser.add_argument('-c', '--colormap', nargs='?', default='rainbow', help="matplotlib colour map [%(default)s]")
+                        help='Map projection')
+    parser.add_argument('-c', '--colormap', nargs='?', default='rainbow', help='matplotlib colour map [%(default)s]')
 
     args = parser.parse_args()
 
@@ -73,9 +73,9 @@ def main():
                 # draw summed map for day
                 s.sumDay(args.day)
 
-                plotoptions['caption'] = "{} {} {} {}: {}{}{} day sum (UTC)".format(s.runname, s.averaging, s.altitude,
+                plotoptions['caption'] = '{} {} {} {}: {}{}{} day sum (UTC)'.format(s.runname, s.averaging, s.altitude,
                                                                               s.direction, s.year, s.month, s.day)
-                plotoptions['outfile'] = "{}_{}{}{}_daily.png".format(s.runname, s.year, s.month, s.day)
+                plotoptions['outfile'] = '{}_{}{}{}_daily.png'.format(s.runname, s.year, s.month, s.day)
 
                 drawmap.drawMap(s, column, **plotoptions)
 
@@ -83,9 +83,9 @@ def main():
                 # draw summed map for week
                 s.sumWeek(args.week)
 
-                plotoptions['caption'] = "{} {} {} {}: {} week {} sum (UTC)".format(s.runname, s.averaging, s.altitude,
+                plotoptions['caption'] = '{} {} {} {}: {} week {} sum (UTC)'.format(s.runname, s.averaging, s.altitude,
                                                                               s.direction, s.year, args.week)
-                plotoptions['outfile'] = "{}_{}{}_weekly.png".format(s.runname, s.year, args.week.zfill(2))
+                plotoptions['outfile'] = '{}_{}{}_weekly.png'.format(s.runname, s.year, args.week.zfill(2))
 
                 drawmap.drawMap(s, column, **plotoptions)
 
@@ -93,19 +93,19 @@ def main():
                 # draw summed map for month
                 s.sumMonth(args.month)
 
-                plotoptions['caption'] = "{} {} {} {}: {} {} sum (UTC)".format(s.runname, s.averaging, s.altitude,
+                plotoptions['caption'] = '{} {} {} {}: {} {} sum (UTC)'.format(s.runname, s.averaging, s.altitude,
                                                                          s.direction, s.year,
                                                                          calendar.month_name[int(args.month)])
-                plotoptions['outfile'] = "{}_{}{}_monthly.png".format(s.runname, s.year, args.month.zfill(2))
+                plotoptions['outfile'] = '{}_{}{}_monthly.png'.format(s.runname, s.year, args.month.zfill(2))
                 drawmap.drawMap(s, column, **plotoptions)
 
             elif args.year:
                 # draw summed map for year
                 s.sumYear(args.year)
 
-                plotoptions['caption'] = "{} {} {} {}: {} year sum (UTC)".format(s.runname, s.averaging, s.altitude,
+                plotoptions['caption'] = '{} {} {} {}: {} year sum (UTC)'.format(s.runname, s.averaging, s.altitude,
                                                                            s.direction, args.year)
-                plotoptions['outfile'] = "{}_{}_yearly.png".format(s.runname, args.year)
+                plotoptions['outfile'] = '{}_{}_yearly.png'.format(s.runname, args.year)
 
                 drawmap.drawMap(s, column, **plotoptions)
 
@@ -113,9 +113,9 @@ def main():
                 # draw summed map for entire directory
                 s.sumAll()
 
-                plotoptions['caption'] = "{} {} {} {}: Summed (UTC)".format(s.runname, s.averaging, s.altitude,
+                plotoptions['caption'] = '{} {} {} {}: Summed (UTC)'.format(s.runname, s.averaging, s.altitude,
                                                                             s.direction)
-                plotoptions['outfile'] = "{}_summed_all.png".format(s.runname)
+                plotoptions['outfile'] = '{}_summed_all.png'.format(s.runname)
                 drawmap.drawMap(s, column, **plotoptions)
 
             else:
@@ -131,5 +131,5 @@ def main():
         # End with so tempdir is deleted
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -86,7 +86,7 @@ class Sum(Name):
 
         self.files = sorted(self.fs.years[y])
         self.__addFiles(self.files)
-        self.sumby = "year%s" % y
+        self.sumby = 'year%s' % y
 
     def __addFiles(self, files):
         """

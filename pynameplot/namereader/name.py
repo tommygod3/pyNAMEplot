@@ -51,7 +51,7 @@ class Name:
         self.crs = crs
 
         if not os.path.isfile(self.filename):
-            raise Exception("Cannot find name file: {}".format(self.filename))
+            raise Exception('Cannot find name file: {}'.format(self.filename))
 
         # Enable Shapely native C++ acceleration
         if speedups.available:
@@ -120,8 +120,8 @@ class Name:
         field1 = fields[fields.columns[[0]]]
         self.ave = field1[6::1].values[0][0].strip()
         self.averaging = self.ave.replace(' integral','').replace('day ','days ').replace(' 0hr','').replace(' 0min','')
-        self.timerun = self.averaging.split(" ")[0]
-        self.releasetime = self.averaging.split(" ")[1]
+        self.timerun = self.averaging.split(' ')[0]
+        self.releasetime = self.averaging.split(' ')[1]
 
         # Store run duration time
         dur = self.header['Run duration']
@@ -206,7 +206,7 @@ class Name:
         self.data = gpd.GeoDataFrame(df, crs=self.crs, geometry=df['grid'])
 
         # Set lat/lon indices on data
-        self.data.set_index(["Longitude", "Latitude"], inplace=True)
+        self.data.set_index(['Longitude', 'Latitude'], inplace=True)
 
     def add_range(self, ts):
         """

@@ -37,9 +37,9 @@ if speedups.available:
 # ------------------------------------
 
 parser = argparse.ArgumentParser(prog='makemastergrid', description='Generate master grid file from ESRI zones.')
-parser.add_argument("-n", "--namefile", help='Input NAME file to define grid shape', required=True)
-parser.add_argument("-s", "--shapelist", help='File containing list of input shapefiles', required=True)
-parser.add_argument("-o", "--outfile", help='Output master grid file name', required=True)
+parser.add_argument('-n', '--namefile', help='Input NAME file to define grid shape', required=True)
+parser.add_argument('-s', '--shapelist', help='File containing list of input shapefiles', required=True)
+parser.add_argument('-o', '--outfile', help='Output master grid file name', required=True)
 args = parser.parse_args()
 
 # ------------------------------------
@@ -48,7 +48,7 @@ print('+++ Starting makemastergrid... +++')
 
 # Read list of shapefiles, colours
 
-print(("Reading shape list %s..." % args.shapelist))
+print('Reading shape list %s...' % args.shapelist)
 
 files = []
 colors = []
@@ -56,8 +56,8 @@ colors = []
 with open(args.shapelist, 'r') as shp:
 
     for line in shp:
-        if "," in line:
-            (shapename, colorname) = line.split(",", 1)
+        if ',' in line:
+            (shapename, colorname) = line.split(',', 1)
             shapename = shapename.strip()
             colorname = colorname.strip()
 
@@ -70,12 +70,12 @@ pcnames = [ 'pc_' + s for s in shortnames ]
 # Get CRS from first shapefile
 s = gpd.read_file(files[0])
 
-print(('CRS found: ', s.crs))
+print('CRS found: ', s.crs)
 
 # ------------------------------------
 # Read NAME file header for grid parameters
 
-print(("Parsing header %s..." % args.namefile))
+print('Parsing header %s...' % args.namefile)
 
 head = header.loadheader(args.namefile)
 
@@ -113,13 +113,13 @@ df['grid'] = [ Polygon(geom.gridsquare(xy + grid_size)) for xy in zip(df.Longitu
 # Create GeoDataFrame using CRS from provided shapefiles
 gd = gpd.GeoDataFrame(df, crs=s.crs, geometry=df['grid'])
 
-print("Starting covering factor calculations...")
+print('Starting covering factor calculations...')
 
 # Loop over input shapefiles
 for f in files:
 
     shp = shape.Shape(f)
-    print(("Processing zone %s..." % shp.shortname))
+    print('Processing zone %s...' % shp.shortname)
 
     cover = gpd.sjoin(gd, shp.data, how='inner', op='intersects')
 
@@ -129,7 +129,7 @@ for f in files:
 
     if not c2.index.is_unique:
 
-        print(("Removing duplicate index for %s" % shp.shortname))
+        print('Removing duplicate index for %s' % shp.shortname)
         c2 = c2[~c2.index.duplicated(keep='first')]
 
 
@@ -144,7 +144,7 @@ gd = gd.set_index(['Longitude', 'Latitude'])
 gd = gd.to_sparse(fill_value=0)
 
 # Write pickle file
-print(("Writing output file %s..." % args.outfile))
+print('Writing output file %s...' % args.outfile)
 gd.to_pickle(args.outfile)
 
-print("=== Done! ===")
+print('=== Done! ===')

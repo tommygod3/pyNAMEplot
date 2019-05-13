@@ -159,7 +159,7 @@ def saveMap(m):
 
 # ------------------------------------
 parser = argparse.ArgumentParser(prog='plotter', description='Plot NAME concentration files on world map')
-parser.add_argument("-c", "--config", help="Configuration file", required=True)
+parser.add_argument('-c', '--config', help='Configuration file', required=True)
 
 args = parser.parse_args()
 
@@ -268,9 +268,9 @@ elif indir:
         # draw summed map for day
         s.sumDay(day)
         if not caption:
-            caption = "{} {} {} {}: {}{}{} day sum".format(runname or s.runname, s.averaging, s.altitude, s.direction, s.year, s.month, s.day)
+            caption = '{} {} {} {}: {}{}{} day sum'.format(runname or s.runname, s.averaging, s.altitude, s.direction, s.year, s.month, s.day)
         if not outfile:
-            outfile = "{}_{}{}{}_daily.png".format(runname or s.runname, s.year, s.month, s.day)
+            outfile = '{}_{}{}{}_daily.png'.format(runname or s.runname, s.year, s.month, s.day)
         map_obj = drawMap(s, 'total')
         map_obj = addSettoMap(map_obj, s, 1, 'total')
 
@@ -285,9 +285,9 @@ elif indir:
         # draw summed map for week
         s.sumWeek(week)
         if not caption:
-            caption = "{} {} {} {}: {} week {} sum". format(runname or s.runname, s.averaging, s.altitude, s.direction, s.year, week)
+            caption = '{} {} {} {}: {} week {} sum'. format(runname or s.runname, s.averaging, s.altitude, s.direction, s.year, week)
         if not outfile:
-            outfile = "{}_{}{}_weekly.png".format(runname or s.runnname, s.year, week.zfill(2))
+            outfile = '{}_{}{}_weekly.png'.format(runname or s.runnname, s.year, week.zfill(2))
         map_obj = drawMap(s, 'total')
         map_obj = addSettoMap(map_obj, s, 1, 'total')
 
@@ -302,9 +302,9 @@ elif indir:
         # draw summed map for month
         s.sumMonth(month)
         if not caption:
-            caption = "{} {} {} {}: {} {} sum". format(runname or s.runname, s.averaging, s.altitude, s.direction, s.year, calendar.month_name[int(month)])
+            caption = '{} {} {} {}: {} {} sum'. format(runname or s.runname, s.averaging, s.altitude, s.direction, s.year, calendar.month_name[int(month)])
         if not outfile:
-            outfile = "{}_{}{}_monthly.png".format(runname or s.runname, s.year, month.zfill(2))
+            outfile = '{}_{}{}_monthly.png'.format(runname or s.runname, s.year, month.zfill(2))
         map_obj = drawMap(s, 'total')
         map_obj = addSettoMap(map_obj, s, 1, 'total')
 
@@ -319,9 +319,9 @@ elif indir:
         # draw summed map for year
         s.sumYear(year)
         if not caption:
-            caption = "{} {} {} {}: {} year sum". format(runname or s.runname, s.averaging, s.altitude, s.direction, year)
+            caption = '{} {} {} {}: {} year sum'. format(runname or s.runname, s.averaging, s.altitude, s.direction, year)
         if not outfile:
-            outfile = "{}_{}_yearly.png".format(runname or s.runname, year)
+            outfile = '{}_{}_yearly.png'.format(runname or s.runname, year)
         map_obj = drawMap(s, 'total')
         map_obj = addSettoMap(map_obj, s, 1, 'total')
 

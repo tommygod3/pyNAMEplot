@@ -103,8 +103,8 @@ def drawMap(n, column):
         colors = []
         with open(shapelist, 'r') as f:
             for line in f:
-                if "," in line:
-                    (filename, colorname) = line.split(",", 1)
+                if ',' in line:
+                    (filename, colorname) = line.split(',', 1)
                     filename = filename.strip()
                     colorname = colorname.strip()
                     
@@ -184,7 +184,7 @@ outdir:      Output directory for plot files, create if does not exist
 """)
 
 parser = argparse.ArgumentParser(prog='plotter', formatter_class=argparse.RawDescriptionHelpFormatter, description='Plot NAME concentration files on world map', epilog=epilog)
-parser.add_argument("-c", "--config", help="Configuration file", required=True)
+parser.add_argument('-c', '--config', help='Configuration file', required=True)
 
 args = parser.parse_args()
 
@@ -268,9 +268,9 @@ elif indir:
         # draw summed map for day
         s.sumDay(day)
         if not caption:
-            caption = "{} {} {} {}: {}{}{} day sum".format(s.runname, s.averaging, s.altitude, s.direction, s.year, s.month, s.day)
+            caption = '{} {} {} {}: {}{}{} day sum'.format(s.runname, s.averaging, s.altitude, s.direction, s.year, s.month, s.day)
         if not outfile:
-            outfile = "{}_{}{}{}_daily.png".format(s.runname, s.year, s.month, s.day)
+            outfile = '{}_{}{}{}_daily.png'.format(s.runname, s.year, s.month, s.day)
         drawMap(s, column)
 
         
@@ -278,36 +278,36 @@ elif indir:
         # draw summed map for week
         s.sumWeek(week)
         if not caption:
-            caption = "{} {} {} {}: {} week {} sum". format(s.runname, s.averaging, s.altitude, s.direction, s.year, week)
+            caption = '{} {} {} {}: {} week {} sum'. format(s.runname, s.averaging, s.altitude, s.direction, s.year, week)
         if not outfile:
-            outfile = "{}_{}{}_weekly.png".format(s.runnname, s.year, week.zfill(2))
+            outfile = '{}_{}{}_weekly.png'.format(s.runnname, s.year, week.zfill(2))
         drawMap(s, column)
 
     elif month:
         # draw summed map for month
         s.sumMonth(month)
         if not caption:
-            caption = "{} {} {} {}: {} {} sum". format(s.runname, s.averaging, s.altitude, s.direction, s.year, calendar.month_name[int(month)])
+            caption = '{} {} {} {}: {} {} sum'. format(s.runname, s.averaging, s.altitude, s.direction, s.year, calendar.month_name[int(month)])
         if not outfile:
-            outfile = "{}_{}{}_monthly.png".format(s.runname, s.year, month.zfill(2))
+            outfile = '{}_{}{}_monthly.png'.format(s.runname, s.year, month.zfill(2))
         drawMap(s, column)
 
     elif year:
         # draw summed map for year
         s.sumYear(year)
         if not caption:
-            caption = "{} {} {} {}: {} year sum". format(s.runname, s.averaging, s.altitude, s.direction, year)
+            caption = '{} {} {} {}: {} year sum'. format(s.runname, s.averaging, s.altitude, s.direction, year)
         if not outfile:
-            outfile = "{}_{}_yearly.png".format(s.runname, year)
+            outfile = '{}_{}_yearly.png'.format(s.runname, year)
         drawMap(s, column)
 
     elif sumall:
         # draw summed map for entire directory
         s.sumAll()
         if not caption:
-            caption = "{} {} {} {}: Summed".format(s.runname, s.averaging, s.altitude, s.direction)
+            caption = '{} {} {} {}: Summed'.format(s.runname, s.averaging, s.altitude, s.direction)
         if not outfile:
-            outfile = "{}_summed_all.png".format(s.runname)
+            outfile = '{}_summed_all.png'.format(s.runname)
         drawMap(s, column)
 
     else:
