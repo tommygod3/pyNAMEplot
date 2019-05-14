@@ -1,5 +1,8 @@
 from setuptools import setup
 
+with open("requirements.txt") as requirements_file:
+    _requirements = requirements_file.readlines()
+
 setup(name='pyNAMEplot',
       version='0.1.5',
       description='Plots output of the NAME model',
@@ -9,6 +12,7 @@ setup(name='pyNAMEplot',
       author_email='trf5@le.ac.uk',
       license='LICENSE.txt',
       include_package_data=True,
+      install_requires=_requirements,
       packages=[
             'pynameplot',
             'pynameplot.namereader',
